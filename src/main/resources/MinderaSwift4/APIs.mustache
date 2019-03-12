@@ -14,12 +14,12 @@ open class {{projectName}}API {
 }
 
 open class RequestBuilder<T> {
-    var credential: URLCredential?
-    var headers: [String:String]
-    public let parameters: [String:Any]?
-    public let isBody: Bool
-    public let method: String
-    public let URLString: String
+    open var credential: URLCredential?
+    open var headers: [String:String]
+    open let parameters: [String:Any]?
+    open let isBody: Bool
+    open let method: String
+    open let URLString: String
 
     /// Optional block to obtain a reference to the request's progress instance when available.
     public var onProgressReady: ((Progress) -> ())?
