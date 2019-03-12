@@ -299,6 +299,7 @@ public class Swift4Generator extends DefaultCodegen implements CodegenConfig {
 
         if (StringUtils.isEmpty(System.getenv("SWIFT_POST_PROCESS_FILE"))) {
             LOGGER.info("Environment variable SWIFT_POST_PROCESS_FILE not defined so the Swift code may not be properly formatted. To define it, try 'export SWIFT_POST_PROCESS_FILE=/usr/local/bin/swiftformat' (Linux/Mac)");
+            LOGGER.info("NOTE: To enable file post-processing, 'enablePostProcessFile' must be set to `true` (--enable-post-process-file for CLI).");
         }
 
         // Setup project name
@@ -771,6 +772,15 @@ public class Swift4Generator extends DefaultCodegen implements CodegenConfig {
     public Map<String, Object> postProcessModels(Map<String, Object> objs) {
         Map<String, Object> postProcessedModelsEnum = postProcessModelsEnum(objs);
 
+        List<Object> models = (List<Object>) postProcessedModelsEnum.get("models");
+        for (Object _mo : models) {
+            Map<String, Object> mo = (Map<String, Object>) _mo;
+            CodegenModel cm = (CodegenModel) mo.get("model");
+
+            for (CodegenProperty var : cm.allVars) {
+                updateCodegenPropertyEnum(var);
+            }
+        }
         // We iterate through the list of models, and also iterate through each of the
         // properties for each model. For each property, if:
         //
@@ -784,7 +794,6 @@ public class Swift4Generator extends DefaultCodegen implements CodegenConfig {
         //
         // CodegenModel.vendorExtensions["x-codegen-has-escaped-property-names"] = true
         //
-        List<Object> models = (List<Object>) postProcessedModelsEnum.get("models");
         for (Object _mo : models) {
             Map<String, Object> mo = (Map<String, Object>) _mo;
             CodegenModel cm = (CodegenModel) mo.get("model");

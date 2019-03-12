@@ -18,14 +18,22 @@
 package com.mindera.openapi.generator.swift4;
 
 import com.mindera.openapi.generator.Swift4Generator;
+import io.swagger.models.Swagger;
 import io.swagger.parser.OpenAPIParser;
+import io.swagger.parser.SwaggerParser;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.Operation;
 import io.swagger.v3.parser.core.models.ParseOptions;
-import org.openapitools.codegen.CodegenOperation;
-import org.openapitools.codegen.DefaultCodegen;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.junit.Ignore;
+import org.openapitools.codegen.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.io.File;
+import java.net.URL;
+import java.nio.file.Paths;
 
 
 public class Swift4GeneratorTest {
@@ -143,4 +151,45 @@ public class Swift4GeneratorTest {
         Assert.assertEquals(podAuthors, openAPIDevs);
     }
 
+
+    @Test
+    public void testPetstoreGeneratedCode() throws Exception {
+        final File folder = new File("tmp");
+
+        try {
+            testGeneratedCodeCompilation("src/test/resources/petstore.json", folder);
+            File order = new File(folder, "/OpenAPIClient/Classes/OpenAPIs/Models/Order.swift");
+            Assert.assertTrue(order.exists());
+        } finally {
+            FileUtils.deleteDirectory(folder);
+        }
+    }
+
+    @Test
+    @Ignore
+    public void testSmartboxGeneratedCode() throws Exception {
+        final File folder = new File("tmp");
+
+        try {
+            testGeneratedCodeCompilation("src/test/resources/smartbox.yml", folder);
+            File order = new File(folder, "/OpenAPIClient/Classes/OpenAPIs/Models/Order.swift");
+            Assert.assertTrue(order.exists());
+        } finally {
+            //FileUtils.deleteDirectory(folder);
+        }
+    }
+
+    private void testGeneratedCodeCompilation(String apiLocation, final File folder) throws Exception {
+        final OpenAPI openAPI = new OpenAPIParser().readLocation(apiLocation, null, new ParseOptions()).getOpenAPI();
+        final DefaultCodegen codegenConfig = new Swift4Generator();
+
+        codegenConfig.additionalProperties().put("responseAs", "RxSwift");
+        codegenConfig.setOutputDir(folder.getAbsolutePath());
+
+        ClientOptInput clientOptInput = (new ClientOptInput())
+                .opts(new ClientOpts())
+                .openAPI(openAPI)
+                .config(codegenConfig);
+        (new DefaultGenerator()).opts(clientOptInput).generate();
+    }
 }
