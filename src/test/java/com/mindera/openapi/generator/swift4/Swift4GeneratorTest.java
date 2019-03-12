@@ -125,33 +125,6 @@ public class Swift4GeneratorTest {
         Assert.assertEquals(op.bodyParam.dataType, "DateWithoutTime");
     }
 
-    @Test(enabled = true)
-    public void testDefaultPodAuthors() throws Exception {
-        // Given
-
-        // When
-        swiftCodegen.processOpts();
-
-        // Then
-        final String podAuthors = (String) swiftCodegen.additionalProperties().get(Swift4Generator.POD_AUTHORS);
-        Assert.assertEquals(podAuthors, Swift4Generator.DEFAULT_POD_AUTHORS);
-    }
-
-    @Test(enabled = true)
-    public void testPodAuthors() throws Exception {
-        // Given
-        final String openAPIDevs = "OpenAPI Devs";
-        swiftCodegen.additionalProperties().put(Swift4Generator.POD_AUTHORS, openAPIDevs);
-
-        // When
-        swiftCodegen.processOpts();
-
-        // Then
-        final String podAuthors = (String) swiftCodegen.additionalProperties().get(Swift4Generator.POD_AUTHORS);
-        Assert.assertEquals(podAuthors, openAPIDevs);
-    }
-
-
     @Test
     public void testPetstoreGeneratedCode() throws Exception {
         final File folder = new File("tmp");
@@ -165,15 +138,14 @@ public class Swift4GeneratorTest {
         }
     }
 
-    @Test
-    @Ignore
+    @Test(enabled = false)
     public void testSmartboxGeneratedCode() throws Exception {
         final File folder = new File("tmp");
 
         try {
             testGeneratedCodeCompilation("src/test/resources/smartbox.yml", folder);
-            File order = new File(folder, "/OpenAPIClient/Classes/OpenAPIs/Models/Order.swift");
-            Assert.assertTrue(order.exists());
+            File model = new File(folder, "/OpenAPIClient/Classes/OpenAPIs/Models/VoucherDetails.swift");
+            Assert.assertTrue(model.exists());
         } finally {
             //FileUtils.deleteDirectory(folder);
         }
