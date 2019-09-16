@@ -550,7 +550,7 @@ public class Swift4Generator extends DefaultCodegen implements CodegenConfig {
         if (name.length() == 0) {
             return "DefaultAPI";
         }
-        return initialCaps(name) + "API";
+        return StringUtils.capitalize(name) + "API";
     }
 
     @Override
