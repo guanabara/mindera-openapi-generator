@@ -10,8 +10,8 @@ open class Configuration {
 	
 	// These values are used to configure date formatters that are used to serialize dates into JSON format.
 	// You must set it prior to encoding any dates, and it will only be read once. 
-    open static var dateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
-    open static var dateFormat = "yyyy-MM-dd"
+    public static var dateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
+    public static var dateFormat = "yyyy-MM-dd"
 
     static var iso8601DateTimeFormatter: DateFormatter = {
         let formatter = DateFormatter()
