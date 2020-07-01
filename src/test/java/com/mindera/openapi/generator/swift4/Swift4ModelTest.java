@@ -46,7 +46,7 @@ public class Swift4ModelTest {
                 .addRequiredItem("name")
                 .discriminator(new Discriminator().propertyName("test"));
         final DefaultCodegen codegen = new Swift4Generator();
-        final CodegenModel cm = codegen.fromModel("sample", schema, Collections.singletonMap("sample", schema));
+        final CodegenModel cm = codegen.fromModel("sample", schema);
 
         Assert.assertEquals(cm.name, "sample");
         Assert.assertEquals(cm.classname, "Sample");
@@ -63,7 +63,6 @@ public class Swift4ModelTest {
         Assert.assertTrue(property1.hasMore);
         Assert.assertTrue(property1.required);
         Assert.assertTrue(property1.isPrimitiveType);
-        Assert.assertTrue(property1.isNotContainer);
 
         final CodegenProperty property2 = cm.vars.get(1);
         Assert.assertEquals(property2.baseName, "name");
@@ -74,7 +73,6 @@ public class Swift4ModelTest {
         Assert.assertTrue(property2.hasMore);
         Assert.assertTrue(property2.required);
         Assert.assertTrue(property2.isPrimitiveType);
-        Assert.assertTrue(property2.isNotContainer);
 
         final CodegenProperty property3 = cm.vars.get(2);
         Assert.assertEquals(property3.baseName, "createdAt");
@@ -84,7 +82,6 @@ public class Swift4ModelTest {
         Assert.assertEquals(property3.baseType, "Date");
         Assert.assertTrue(property3.hasMore);
         Assert.assertFalse(property3.required);
-        Assert.assertTrue(property3.isNotContainer);
 
         final CodegenProperty property4 = cm.vars.get(3);
         Assert.assertEquals(property4.baseName, "binary");
@@ -94,7 +91,6 @@ public class Swift4ModelTest {
         Assert.assertEquals(property4.baseType, "URL");
         Assert.assertTrue(property4.hasMore);
         Assert.assertFalse(property4.required);
-        Assert.assertTrue(property4.isNotContainer);
 
         final CodegenProperty property5 = cm.vars.get(4);
         Assert.assertEquals(property5.baseName, "byte");
@@ -104,7 +100,6 @@ public class Swift4ModelTest {
         Assert.assertEquals(property5.baseType, "Data");
         Assert.assertTrue(property5.hasMore);
         Assert.assertFalse(property5.required);
-        Assert.assertTrue(property5.isNotContainer);
 
         final CodegenProperty property6 = cm.vars.get(5);
         Assert.assertEquals(property6.baseName, "uuid");
@@ -114,7 +109,6 @@ public class Swift4ModelTest {
         Assert.assertEquals(property6.baseType, "UUID");
         Assert.assertTrue(property6.hasMore);
         Assert.assertFalse(property6.required);
-        Assert.assertTrue(property6.isNotContainer);
 
         final CodegenProperty property7 = cm.vars.get(6);
         Assert.assertEquals(property7.baseName, "dateOfBirth");
@@ -124,7 +118,5 @@ public class Swift4ModelTest {
         Assert.assertEquals(property7.baseType, "DateWithoutTime");
         Assert.assertFalse(property7.hasMore);
         Assert.assertFalse(property7.required);
-        Assert.assertTrue(property7.isNotContainer);
     }
-
 }

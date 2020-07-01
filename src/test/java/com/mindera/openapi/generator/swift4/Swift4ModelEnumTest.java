@@ -39,7 +39,7 @@ public class Swift4ModelEnumTest {
         final Schema model = new Schema().type("object").addProperties("name", enumSchema);
 
         final DefaultCodegen codegen = new Swift4Generator();
-        final CodegenModel cm = codegen.fromModel("sample", model, Collections.singletonMap("sample", model));
+        final CodegenModel cm = codegen.fromModel("sample", model);
 
         Assert.assertEquals(cm.vars.size(), 1);
 

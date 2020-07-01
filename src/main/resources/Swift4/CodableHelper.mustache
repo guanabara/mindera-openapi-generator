@@ -16,7 +16,7 @@ open class CodableHelper {
         var returnedError: Error? = nil
 
         let decoder = JSONDecoder()
-        decoder.dataDecodingStrategy = .base64
+            decoder.dataDecodingStrategy = .base64
         decoder.dateDecodingStrategy = .formatted(Configuration.iso8601DateTimeFormatter)
 
         do {
@@ -36,7 +36,7 @@ open class CodableHelper {
         if prettyPrint {
             encoder.outputFormatting = .prettyPrinted
         }
-        encoder.dataEncodingStrategy = .base64
+            encoder.dataEncodingStrategy = .base64
         encoder.dateEncodingStrategy = .formatted(Configuration.iso8601DateTimeFormatter)
 
         do {

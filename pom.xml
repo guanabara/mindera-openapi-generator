@@ -126,18 +126,11 @@
             <version>${testng-version}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.jmockit</groupId>
-            <artifactId>jmockit</artifactId>
-            <version>${jmockit-version}</version>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
     <properties>
-        <jmockit-version>1.43</jmockit-version>
         <testng-version>6.9.6</testng-version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <openapi-generator-version>3.3.4</openapi-generator-version>
+        <openapi-generator-version>4.3.0</openapi-generator-version>
         <maven-plugin-version>1.0.0</maven-plugin-version>
         <junit-version>4.8.1</junit-version>
     </properties>
