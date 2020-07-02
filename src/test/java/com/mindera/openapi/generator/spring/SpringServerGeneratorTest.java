@@ -45,26 +45,9 @@ public class SpringServerGeneratorTest {
         }
     }
 
-    @Test
-    public void testApiGeneratedCodeCompilation() throws Exception {
-        final File folder = getTemporaryFolder();
-        try {
-            testGeneratedCodeCompilation("src/test/resources/api.yml", folder);
-            File petModel = new File(folder, "/src/main/java/org/openapitools/model/Company.java");
-            Assert.assertTrue(petModel.exists());
-            File editablePetModel = new File(folder, "/src/main/java/org/openapitools/model/EditablePet.java");
-            Assert.assertTrue(editablePetModel.exists());
-        } finally {
-            //FileUtils.deleteDirectory(folder);
-        }
-    }
-
     private File getTemporaryFolder() throws Exception {
-        //final File folder = new File(Paths.get(FileUtils.getTempDirectoryPath(), String.format("%s_%s",
-        //        getClass().getSimpleName().toLowerCase(),
-        //        RandomStringUtils.randomAlphanumeric(4))).toAbsolutePath().toString());
-        final File folder = new File(
-                Paths.get("./tmp", String.format("%s_%s", getClass().getSimpleName().toLowerCase(),
+        final File folder = new File(Paths.get(FileUtils.getTempDirectoryPath(), String.format("%s_%s",
+                getClass().getSimpleName().toLowerCase(),
                 RandomStringUtils.randomAlphanumeric(4))).toAbsolutePath().toString());
         if (!folder.exists()) {
             if (!folder.mkdirs()) {

@@ -468,7 +468,12 @@ public class Swift4Generator extends DefaultCodegen implements CodegenConfig {
             Schema inner = ModelUtils.getAdditionalProperties(p);
             return "[String:" + getTypeDeclaration(inner) + "]";
         }
-        return super.getTypeDeclaration(p);
+        if (p == null) {
+            LOGGER.warn("Null schema found. Default type to `NULL_SCHMEA_ERR`");
+            return "NULL_SCHMEA_ERR";
+        } else {
+            return this.getSchemaType(p);
+        }
     }
 
     @Override
