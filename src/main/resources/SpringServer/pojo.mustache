@@ -155,6 +155,10 @@ public class {{classname}} {{#parent}}extends {{{parent}}}{{/parent}}{{^parent}}
     return o.toString().replace("\n", "\n    ");
   }
 
+  public static Builder {{classVarName}}Builder() {
+    return new Builder();
+  }
+
   @SuppressWarnings("unchecked")
   protected static class GenericBuilder<T extends GenericBuilder<T>> {{#parent}}extends {{{parent}}}.GenericBuilder<T> {{/parent}}{
       {{#vars}}
