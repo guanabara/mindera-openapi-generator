@@ -13,6 +13,8 @@ import java.io.File;
 import java.util.List;
 import java.util.Map;
 
+import static org.openapitools.codegen.utils.StringUtils.camelize;
+
 public class SpringServerGenerator extends SpringCodegen {
     private static final String CONFIG_OPTION_IS_CORS_ENABLED = "isCorsEnabled";
 
@@ -75,7 +77,11 @@ public class SpringServerGenerator extends SpringCodegen {
     @Override
     public CodegenProperty fromProperty(String name, Schema p) {
         CodegenProperty codegenProperty = super.fromProperty(name, p);
-        codegenProperty.vendorExtensions.put("builder", "with" + getterAndSetterCapitalize(name));
+
+        if (name != null) {
+            name = camelize(toVarName(name), true);
+        }
+        codegenProperty.vendorExtensions.put("builder", name);
         return codegenProperty;
     }
 
