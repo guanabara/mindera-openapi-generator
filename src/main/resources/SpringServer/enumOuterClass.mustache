@@ -37,6 +37,6 @@ public enum {{#datatypeWithEnum}}{{{.}}}{{/datatypeWithEnum}}{{^datatypeWithEnum
         return b;
       }
     }
-    return null;
+    throw new InvalidArgumentException();
   }
 }
