@@ -5,7 +5,7 @@
     <artifactId>mindera-openapi-generator</artifactId>
     <packaging>jar</packaging>
     <name>mindera-openapi-generator</name>
-    <version>2.2.4</version>
+    <version>3.0.0</version>
     <build>
         <plugins>
             <plugin>
@@ -108,6 +108,11 @@
     </build>
     <dependencies>
         <dependency>
+            <groupId>com.github.javaparser</groupId>
+            <artifactId>javaparser-core</artifactId>
+            <version>3.16.1</version>
+        </dependency>
+        <dependency>
             <groupId>org.openapitools</groupId>
             <artifactId>openapi-generator</artifactId>
             <version>${openapi-generator-version}</version>
@@ -118,6 +123,12 @@
             <artifactId>openapi-generator</artifactId>
             <version>${openapi-generator-version}</version>
             <classifier>tests</classifier>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito-version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -133,6 +144,7 @@
         <openapi-generator-version>4.3.0</openapi-generator-version>
         <maven-plugin-version>1.0.0</maven-plugin-version>
         <junit-version>4.8.1</junit-version>
+        <mockito-version>3.2.0</mockito-version>
     </properties>
 
     <distributionManagement>
