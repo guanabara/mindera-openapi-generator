@@ -134,17 +134,4 @@
         <maven-plugin-version>1.0.0</maven-plugin-version>
         <junit-version>4.8.1</junit-version>
     </properties>
-
-    <distributionManagement>
-        <repository>
-            <id>irmanager-releases</id>
-            <name>IRManager Releases</name>
-            <url>http://10.49.0.233:8081/repository/maven-releases/</url>
-        </repository>
-        <snapshotRepository>
-            <id>irmanager-snapshots</id>
-            <name>IRManager Snapshots</name>
-            <url>http://10.49.0.233:8081/repository/maven-snapshots/</url>
-        </snapshotRepository>
-    </distributionManagement>
 </project>
